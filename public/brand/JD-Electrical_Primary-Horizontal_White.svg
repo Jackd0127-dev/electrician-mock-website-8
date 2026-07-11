@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="920" height="245" viewBox="0 0 920 245" role="img" aria-labelledby="title desc">
+  <title id="title">Primary horizontal white logo</title>
+  <desc id="desc">Editable vector logo for JD Electrical.</desc>
+
+<g id="jd-symbol" transform="translate(10 20) scale(0.95)" fill="none" stroke-linejoin="round">
+  <path id="outer-d-route" d="M45 25 H120 C162 25 195 58 195 100 C195 142 162 175 120 175 H47 L24 153"
+        stroke="#FFFFFF" stroke-width="11" stroke-linecap="round"/>
+  <path id="inner-d-route" d="M45 52 H113 C145 52 169 74 169 101 C169 130 146 153 116 153"
+        stroke="#FFFFFF" stroke-width="11" stroke-linecap="round"/>
+  <path id="integrated-j-route" d="M79 70 V121 C79 141 65 153 45 153 H22"
+        stroke="#FFFFFF" stroke-width="11" stroke-linecap="square"/>
+  <g id="connection-nodes">
+    <circle cx="45" cy="25" r="9" fill="#FF6400" stroke="none"/>
+    <circle cx="45" cy="25" r="4" fill="#FFFFFF" stroke="none"/>
+    <circle cx="116" cy="153" r="9" fill="#FF6400" stroke="none"/>
+    <circle cx="116" cy="153" r="4" fill="#FFFFFF" stroke="none"/>
+  </g>
+</g>
+<g id="wordmark"><text id="brand-initials" x="245" y="92" fill="#FFFFFF" font-family="Inter Display, Inter, Arial, sans-serif" font-size="78" font-weight="700" text-anchor="start" letter-spacing="0">JD</text><text id="brand-descriptor" x="245" y="158" fill="#FFFFFF" font-family="Inter Display, Inter, Arial, sans-serif" font-size="64" font-weight="600" text-anchor="start" letter-spacing="0.8">ELECTRICAL</text></g><g id="connection-line"><line x1="245" y1="181" x2="824" y2="181" stroke="#FF6400" stroke-width="5"/><circle cx="837" cy="181" r="10" fill="#FF6400"/><circle cx="837" cy="181" r="4" fill="#FFFFFF"/></g><text id="tagline" x="245" y="224" fill="#FFFFFF" font-family="Inter Display, Inter, Arial, sans-serif" font-size="21" font-weight="600" text-anchor="start" letter-spacing="5.5">POWER, PRECISELY DELIVERED.</text></svg>
