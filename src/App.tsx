@@ -13,7 +13,10 @@ type Project = {
 }
 
 const currentPath = window.location.pathname
-const showcaseBase = currentPath === '/showcase8' || currentPath.startsWith('/showcase8/') ? '/showcase8' : ''
+const canonicalShowcasePath = '/Demo-J-D'
+const normalizedPath = currentPath.replace(/\/+$/, '').toLowerCase()
+const normalizedShowcasePath = canonicalShowcasePath.toLowerCase()
+const showcaseBase = normalizedPath === normalizedShowcasePath || normalizedPath.startsWith(`${normalizedShowcasePath}/`) ? canonicalShowcasePath : ''
 const route = (path: string) => `${showcaseBase}${path}`
 const asset = (path: string) => `${showcaseBase}${path}`
 const NOVAS_AGENCY_URL = 'https://novasagency.com'
