@@ -16,6 +16,8 @@ const currentPath = window.location.pathname
 const showcaseBase = currentPath === '/showcase8' || currentPath.startsWith('/showcase8/') ? '/showcase8' : ''
 const route = (path: string) => `${showcaseBase}${path}`
 const asset = (path: string) => `${showcaseBase}${path}`
+const NOVAS_AGENCY_URL = 'https://novasagency.com'
+const NOVAS_CONTACT_URL = `${NOVAS_AGENCY_URL}/contact`
 
 const nav = [
   { label: 'Home', href: '/' },
@@ -55,6 +57,15 @@ function Logo({ light = false }: { light?: boolean }) {
   return <img className="brand-logo" src={asset(`/brand/JD-Electrical_Primary-Horizontal_${light ? 'White' : 'Colour'}.svg`)} alt="JD Electrical" />
 }
 
+function NovasAgencyBanner() {
+  return <a href={NOVAS_AGENCY_URL} target="_blank" rel="noreferrer" className="novas-agency-banner">
+    <svg className="novas-agency-banner-defs" aria-hidden="true" focusable="false"><defs><symbol id="novas-n-logo-showcase-8" viewBox="0 0 100 100"><path d="M25 80C25 80 25 35 25 25C25 15 35 25 40 30C65 60 75 75 75 75" stroke="currentColor" strokeWidth="14" strokeLinecap="round" strokeLinejoin="round" fill="none" /></symbol></defs></svg>
+    <span className="novas-agency-banner-fade novas-agency-banner-fade-left" aria-hidden="true" /><span className="novas-agency-banner-fade novas-agency-banner-fade-right" aria-hidden="true" />
+    <span className="novas-agency-banner-track" aria-hidden="true">{[0, 1].map(group => <span className="novas-agency-banner-group" key={group}>{Array.from({ length: 12 }, (_, index) => <span className="novas-agency-banner-item" key={`${group}-${index}`}><svg className="novas-agency-banner-mark" width="24" height="24" viewBox="0 0 100 100"><use href="#novas-n-logo-showcase-8" /></svg><span className="novas-agency-banner-label">Novas Agency</span><span className="novas-agency-banner-descriptor">Web Designer</span></span>)}</span>)}</span>
+    <span className="sr-only">Website created by Novas Agency</span>
+  </a>
+}
+
 function Header({ page }: { page: string }) {
   const [open, setOpen] = useState(false)
   useEffect(() => { setOpen(false) }, [page])
@@ -82,7 +93,7 @@ function Footer() {
       <div><span className="footer-kicker">Quick links</span><a href={route('/')}>Home</a><a href={route('/about')}>About</a><a href={route('/projects')}>Projects</a><a href={route('/services')}>Services</a><a href={route('/contact')}>Contact</a></div>
       <div><span className="footer-kicker">Get in touch</span><p><MapPin size={16} /> Demo address<br />Northern Ireland</p><p><Mail size={16} /> hello@jdelectrical.demo</p><p><Phone size={16} /> 028 0000 0000</p></div>
     </div>
-    <div className="footer-base">© 2026 JD Electrical <span>•</span> Power, Precisely Delivered.</div>
+    <div className="footer-base">© 2026 JD Electrical <span>•</span> Power, Precisely Delivered. <a className="novas-agency-footer-link" href={NOVAS_AGENCY_URL} target="_blank" rel="noreferrer">Website created by Novas Agency</a></div>
   </footer>
 }
 
@@ -129,17 +140,16 @@ function Services() {
 }
 
 function Contact() {
-  const [sent, setSent] = useState(false)
   const [error, setError] = useState('')
-  function submit(event: FormEvent<HTMLFormElement>) { event.preventDefault(); const form = new FormData(event.currentTarget); if (!form.get('firstName') || !form.get('email') || !form.get('subject') || !form.get('message')) { setError('Please complete all required fields.'); return } setError(''); setSent(true); event.currentTarget.reset() }
-  return <><PageHero eyebrow="Home · Contact" title="Let’s talk about the job." text="Tell us what you need and we’ll help you find the right next step. This is a demo contact experience." image={asset('/images/zaptec-2n7ugRl1YsQ-unsplash.jpg')} /><section className="contact-section"><div className="contact-copy"><p className="eyebrow">Get in touch</p><h2>Start with a straightforward conversation.</h2><p>Whether you have a small repair, a planned renovation or a commercial brief, send the details below. No information is submitted from this demo site.</p><div className="contact-details"><p><MapPin size={20} /><span><strong>Demo service area</strong>Northern Ireland and surrounding areas</span></p><p><Mail size={20} /><span><strong>Demo email</strong>hello@jdelectrical.demo</span></p><p><Phone size={20} /><span><strong>Demo phone</strong>028 0000 0000</span></p><p><Clock3 size={20} /><span><strong>Demo hours</strong>Monday–Friday, 08:00–17:00</span></p></div></div><div className="contact-form-wrap">{sent ? <div className="form-success"><CheckCircle2 size={48} /><h3>Thanks — your demo enquiry is ready.</h3><p>No message was sent or stored. Connect this form to your preferred inbox when the real business details are ready.</p><button className="button button--primary" onClick={() => setSent(false)}>Send another demo enquiry<ArrowRight size={17} /></button></div> : <form onSubmit={submit} noValidate><div className="form-grid"><label>First name *<input name="firstName" required /></label><label>Last name<input name="lastName" /></label><label>Email address *<input name="email" type="email" required /></label><label>Phone number<input name="phone" type="tel" /></label></div><label>How can we help? *<select name="subject" required defaultValue=""><option value="" disabled>Select a service</option>{services.map(service => <option value={service.title} key={service.title}>{service.title}</option>)}<option value="General enquiry">General enquiry</option></select></label><label>Tell us about the job *<textarea name="message" required rows={6} /></label>{error && <p className="form-error" role="alert">{error}</p>}<button className="button button--primary" type="submit">Send demo enquiry<ArrowRight size={17} /></button><small>Demo only — this form does not submit or store your information.</small></form>}</div></section></>
+  function submit(event: FormEvent<HTMLFormElement>) { event.preventDefault(); const form = new FormData(event.currentTarget); if (!form.get('firstName') || !form.get('email') || !form.get('subject') || !form.get('message')) { setError('Please complete all required fields.'); return } setError(''); const read = (key: string) => String(form.get(key) ?? '').trim(); const params = new URLSearchParams(); params.set('prefill', 'showcase8'); params.set('source', 'JD Electrical demo website'); params.set('businessName', 'JD Electrical demo enquiry'); params.set('help', 'new-website'); const name = [read('firstName'), read('lastName')].filter(Boolean).join(' '); if (name) params.set('name', name); if (read('phone')) params.set('phone', read('phone')); if (read('email')) params.set('email', read('email')); if (read('message')) params.set('projectDetails', [`Selected service: ${read('subject')}`, read('message')].filter(Boolean).join('\n\n')); window.location.assign(`${NOVAS_CONTACT_URL}?${params.toString()}#contact-form`) }
+  return <><PageHero eyebrow="Home · Contact" title="Let’s talk about the job." text="Tell us what you need and we’ll help you find the right next step. This is a demo contact experience." image={asset('/images/zaptec-2n7ugRl1YsQ-unsplash.jpg')} /><section className="contact-section"><div className="contact-copy"><p className="eyebrow">Get in touch</p><h2>Start with a straightforward conversation.</h2><p>Whether you have a small repair, a planned renovation or a commercial brief, send the details below. Submitting opens Novas Agency with your details prefilled.</p><div className="contact-details"><p><MapPin size={20} /><span><strong>Demo service area</strong>Northern Ireland and surrounding areas</span></p><p><Mail size={20} /><span><strong>Demo email</strong>hello@jdelectrical.demo</span></p><p><Phone size={20} /><span><strong>Demo phone</strong>028 0000 0000</span></p><p><Clock3 size={20} /><span><strong>Demo hours</strong>Monday–Friday, 08:00–17:00</span></p></div></div><div className="contact-form-wrap"><form onSubmit={submit} noValidate><div className="form-grid"><label>First name *<input name="firstName" required /></label><label>Last name<input name="lastName" /></label><label>Email address *<input name="email" type="email" required /></label><label>Phone number<input name="phone" type="tel" /></label></div><label>How can we help? *<select name="subject" required defaultValue=""><option value="" disabled>Select a service</option>{services.map(service => <option value={service.title} key={service.title}>{service.title}</option>)}<option value="General enquiry">General enquiry</option></select></label><label>Tell us about the job *<textarea name="message" required rows={6} /></label>{error && <p className="form-error" role="alert">{error}</p>}<button className="button button--primary" type="submit">Continue to Novas Agency<ArrowRight size={17} /></button><small>Demo only — this opens the Novas Agency contact form with your details prefilled.</small></form></div></section></>
 }
 
 function App() {
   const path = (showcaseBase ? currentPath.slice(showcaseBase.length) : currentPath).replace(/\/$/, '') || '/'
   const pages: Record<string, React.ReactNode> = { '/': <Home />, '/about': <About />, '/projects': <Projects />, '/services': <Services />, '/contact': <Contact /> }
   const page = pages[path] ?? <Home />
-  return <><Header page={path} /><main>{page}</main><Footer /></>
+  return <><NovasAgencyBanner /><Header page={path} /><main>{page}</main><Footer /></>
 }
 
 export default App
