@@ -1,6 +1,28 @@
+# Dependencies and generated application output
 node_modules/
+.next/
 dist/
+build/
+out/
+.vite/
+.npm-cache/
+
+# Test and browser-automation output
+.playwright-cli/
+playwright-report/
+test-results/
+blob-report/
+output/
+/coverage/
+
+# Local configuration and deployment links
+.env
+.env.local
+.env.*.local
+!.env.example
 .vercel/
+
+# Operating-system and tool files
 .DS_Store
+*.log
 *.tsbuildinfo
-.vercel
