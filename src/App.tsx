@@ -61,15 +61,6 @@ function Logo({ light = false }: { light?: boolean }) {
   return <img className="brand-logo" src={asset(`/brand/JD-Electrical_Primary-Horizontal_${light ? 'White' : 'Colour'}.svg`)} alt="JD Electrical" />
 }
 
-function NovasAgencyBanner() {
-  return <a href={NOVAS_AGENCY_URL} target="_blank" rel="noreferrer" className="novas-agency-banner">
-    <svg className="novas-agency-banner-defs" aria-hidden="true" focusable="false"><defs><symbol id="novas-n-logo-showcase-8" viewBox="0 0 100 100"><path d="M25 80C25 80 25 35 25 25C25 15 35 25 40 30C65 60 75 75 75 75" stroke="currentColor" strokeWidth="14" strokeLinecap="round" strokeLinejoin="round" fill="none" /></symbol></defs></svg>
-    <span className="novas-agency-banner-fade novas-agency-banner-fade-left" aria-hidden="true" /><span className="novas-agency-banner-fade novas-agency-banner-fade-right" aria-hidden="true" />
-    <span className="novas-agency-banner-track" aria-hidden="true">{[0, 1].map(group => <span className="novas-agency-banner-group" key={group}>{Array.from({ length: 12 }, (_, index) => <span className="novas-agency-banner-item" key={`${group}-${index}`}><svg className="novas-agency-banner-mark" width="24" height="24" viewBox="0 0 100 100"><use href="#novas-n-logo-showcase-8" /></svg><span className="novas-agency-banner-label">Novas Agency</span><span className="novas-agency-banner-descriptor">Web Designer</span></span>)}</span>)}</span>
-    <span className="sr-only">Website created by Novas Agency</span>
-  </a>
-}
-
 function Header({ page }: { page: string }) {
   const [open, setOpen] = useState(false)
   useEffect(() => { setOpen(false) }, [page])
@@ -153,7 +144,7 @@ function App() {
   const path = (showcaseBase ? currentPath.slice(showcaseBase.length) : currentPath).replace(/\/$/, '') || '/'
   const pages: Record<string, React.ReactNode> = { '/': <Home />, '/about': <About />, '/projects': <Projects />, '/services': <Services />, '/contact': <Contact /> }
   const page = pages[path] ?? <Home />
-  return <><NovasAgencyBanner /><Header page={path} /><main>{page}</main><Footer /></>
+  return <><Header page={path} /><main>{page}</main><Footer /></>
 }
 
 export default App
