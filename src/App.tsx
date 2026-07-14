@@ -1,7 +1,7 @@
 import { FormEvent, useEffect, useState } from 'react'
 import {
   ArrowRight, ArrowUpRight, Bolt, CheckCircle2, ChevronRight, Clock3, Mail,
-  MapPin, Menu, Phone, ShieldCheck, Wrench, X,
+  Cable, MapPin, Menu, Phone, ShieldCheck, Wrench, X,
 } from 'lucide-react'
 
 type Project = {
@@ -44,6 +44,7 @@ const services = [
   { title: 'Power, Lighting & Controls', text: 'Practical, efficient electrical environments built around how your space is really used.', icon: ShieldCheck, bullets: ['LED lighting upgrades', 'Smart controls', 'Distribution boards', 'Data and small-power works'] },
   { title: 'EV Charging', text: 'Straightforward home and workplace charging guidance, installation and handover.', icon: Bolt, bullets: ['Home charger installation', 'Workplace charging', 'Load checks', 'Future-ready cabling'] },
   { title: 'Maintenance & Testing', text: 'Clear, responsive support that keeps your property safe, compliant and operational.', icon: CheckCircle2, bullets: ['Electrical condition reports', 'Planned maintenance', 'Reactive callouts', 'Landlord compliance support'] },
+  { title: 'Fire & Security Systems', text: 'Connected protection systems planned clearly for safer homes, workplaces and shared spaces.', icon: Cable, bullets: ['Alarm and detection wiring', 'Access control cabling', 'CCTV power provision', 'System-ready infrastructure'] },
 ]
 
 const proofPoints = [
@@ -116,7 +117,7 @@ function ServiceList({ detailed = false }: { detailed?: boolean }) {
 }
 
 function CTA() {
-  return <section className="cta-section"><div><p className="eyebrow eyebrow--orange">Start a project</p><h2>Let’s make your next electrical job straightforward.</h2><p>From the first conversation to a clean handover, JD Electrical keeps every step clear.</p></div><div className="cta-actions"><LinkButton href="/contact" variant="light">Send an enquiry</LinkButton><LinkButton href="/projects" variant="text">View demo projects</LinkButton></div></section>
+  return <section className="cta-section"><div className="cta-copy"><p className="eyebrow eyebrow--orange">Start a project</p><h2>Let’s make your next electrical job straightforward.</h2><p>From the first conversation to a clean handover, JD Electrical keeps every step clear.</p></div><div className="cta-actions"><LinkButton href="/contact" variant="light">Send an enquiry</LinkButton><LinkButton href="/projects" variant="text">View demo projects</LinkButton></div></section>
 }
 
 function Home() {
@@ -131,7 +132,7 @@ function Home() {
 }
 
 function About() {
-  return <><PageHero eyebrow="Home · About" title="Built around dependable delivery." text="JD Electrical is a demo brand representing a clear, skilled and professional electrical partner for Northern Ireland." image={asset('/images/e32375219bc4107fccd81055667006e8.jpg')} /><section className="logo-strip"><span>Local homes</span><span>Commercial spaces</span><span>Property teams</span><span>Renovation projects</span><span>Workplace charging</span></section><section className="about-story"><div><p className="eyebrow">About JD Electrical</p><h2>Clear work. Safe hands. No fuss.</h2><p>Our fictional studio is built around the kind of service people genuinely value: turning up when promised, explaining the work in plain English, and leaving every space as tidy as we found it.</p><p>Whether it is a single room, an evolving property portfolio or a complex commercial installation, the aim stays the same — a reliable electrical result that feels straightforward from start to finish.</p></div><img src={asset('/images/8b896a3dad0b83bde36de97a7dd1e30f.jpg')} alt="Electrical installation detail" /></section><section className="stats-section">{[...proofPoints, { value: '5', label: 'core demo services', icon: Bolt }].map(point => { const Icon = point.icon; return <div key={point.value}><Icon size={24} /><strong>{point.value}</strong><span>{point.label}</span></div> })}</section><section className="approach-section"><div className="section-heading"><p className="eyebrow">Our approach</p><h2>Structured for smooth, confident work.</h2></div><div className="approach-grid">{[['01', 'Listen first', 'We begin with the real requirements of the space, not a one-size-fits-all recommendation.'], ['02', 'Plan precisely', 'Clear scopes, considered materials and sensible timings keep the job on track.'], ['03', 'Deliver properly', 'A clean finish, practical handover and the right documentation complete the work.']].map(item => <article key={item[0]}><span>{item[0]}</span><h3>{item[1]}</h3><p>{item[2]}</p></article>)}</div></section><CTA /></>
+  return <><PageHero eyebrow="Home · About" title="Built around dependable delivery." text="JD Electrical is a demo brand representing a clear, skilled and professional electrical partner for Northern Ireland." image={asset('/images/e32375219bc4107fccd81055667006e8.jpg')} /><section className="logo-strip"><span>Local homes</span><span>Commercial spaces</span><span>Property teams</span><span>Renovation projects</span><span>Workplace charging</span></section><section className="about-story"><div><p className="eyebrow">About JD Electrical</p><h2>Clear work. Safe hands. No fuss.</h2><p>Our fictional studio is built around the kind of service people genuinely value: turning up when promised, explaining the work in plain English, and leaving every space as tidy as we found it.</p><p>Whether it is a single room, an evolving property portfolio or a complex commercial installation, the aim stays the same — a reliable electrical result that feels straightforward from start to finish.</p></div><div className="about-image-card"><img src={asset('/images/8b896a3dad0b83bde36de97a7dd1e30f.jpg')} alt="Electrical installation detail" /><div className="about-image-card-caption"><span>JD Electrical</span><span>Residential delivery</span></div></div></section><section className="stats-section">{[...proofPoints, { value: '6', label: 'core demo services', icon: Bolt }].map(point => { const Icon = point.icon; return <div key={point.value}><Icon size={24} /><strong>{point.value}</strong><span>{point.label}</span></div> })}</section><section className="approach-section"><div className="section-heading"><p className="eyebrow">Our approach</p><h2>Structured for smooth, confident work.</h2></div><div className="approach-grid">{[['01', 'Listen first', 'We begin with the real requirements of the space, not a one-size-fits-all recommendation.'], ['02', 'Plan precisely', 'Clear scopes, considered materials and sensible timings keep the job on track.'], ['03', 'Deliver properly', 'A clean finish, practical handover and the right documentation complete the work.']].map(item => <article key={item[0]}><span>{item[0]}</span><h3>{item[1]}</h3><p>{item[2]}</p></article>)}</div></section><CTA /></>
 }
 
 function Projects() {
