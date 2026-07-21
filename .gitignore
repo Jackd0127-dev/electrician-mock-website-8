@@ -24,5 +24,6 @@ output/
 
 # Operating-system and tool files
 .DS_Store
+._*
 *.log
 *.tsbuildinfo
